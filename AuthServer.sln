@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.ModelsCore", "Auth.Mod
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.ModelsManipulations", "Auth.ModelsManipulations\Auth.ModelsManipulations.csproj", "{8CEBE1E2-2298-4D36-BE5F-8451AA8BA165}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManualOperations", "ManualOperations\ManualOperations.csproj", "{842A9705-7CBD-466D-B11A-5A2EFF139F53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.WebAPI", "Auth.WebAPI\Auth.WebAPI.csproj", "{BC2B0F47-7833-4ED0-A011-F66D6E36C28E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{8CEBE1E2-2298-4D36-BE5F-8451AA8BA165}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CEBE1E2-2298-4D36-BE5F-8451AA8BA165}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CEBE1E2-2298-4D36-BE5F-8451AA8BA165}.Release|Any CPU.Build.0 = Release|Any CPU
+		{842A9705-7CBD-466D-B11A-5A2EFF139F53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{842A9705-7CBD-466D-B11A-5A2EFF139F53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{842A9705-7CBD-466D-B11A-5A2EFF139F53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{842A9705-7CBD-466D-B11A-5A2EFF139F53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC2B0F47-7833-4ED0-A011-F66D6E36C28E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC2B0F47-7833-4ED0-A011-F66D6E36C28E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC2B0F47-7833-4ED0-A011-F66D6E36C28E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC2B0F47-7833-4ED0-A011-F66D6E36C28E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -264,3 +264,4 @@ FakesAssemblies/
 
 #custom 
 ManualOperations
+Auth.WebAPI/appsettings.json
