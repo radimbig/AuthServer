@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using MediatR;
 using System.Reflection;
 using Auth.WebAPI.Common.Behavior.Middlewares;
+using FluentValidation;
+using System.Globalization;
 
 namespace Auth.WebAPI
 {
@@ -48,7 +50,10 @@ namespace Auth.WebAPI
                 app.UseSwaggerUI();
             }
 
+            // Exception Handler
             app.UseMiddleware<CustomExceptionHandlerMiddleware>();
+
+            ValidatorOptions.Global.LanguageManager.Culture = new CultureInfo("en");
 
             app.MapControllers();
 

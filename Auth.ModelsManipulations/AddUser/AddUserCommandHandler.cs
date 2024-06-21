@@ -2,6 +2,7 @@
 using Auth.ModelsCore;
 using Auth.ModelsCore.Exceptions;
 using Microsoft.EntityFrameworkCore;
+using FluentValidation;
 
 namespace Auth.ModelsManipulations.AddUser
 {
@@ -15,6 +16,8 @@ namespace Auth.ModelsManipulations.AddUser
         }
         public async Task<bool> Handle(AddUserCommand request, CancellationToken cancellationToken)
         {
+            var validator = new AddUserCommandValidator();
+            validator.ValidateAndThrow(request);
             if( await CTX.Users.AnyAsync(u => u.Email == request.Email))
             {
                 throw new UserAlreadyExistException();

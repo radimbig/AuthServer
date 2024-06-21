@@ -1,5 +1,6 @@
 ﻿using Auth.ModelsCore.Exceptions;
 using System.Text.Json;
+using FluentValidation;
 
 namespace Auth.WebAPI.Common.Behavior.Middlewares
 {
@@ -28,12 +29,25 @@ namespace Auth.WebAPI.Common.Behavior.Middlewares
             string responseBody = string.Empty;
             context.Response.ContentType = "application/json";
 
+            if (exception is ValidationException validationException)
+            {
+                code = 400;
 
+
+                List<AuthCustomException> errors = new();
+
+                foreach(var error in validationException.Errors)
+                {
+                    errors.Add(new AuthCustomException(error.ErrorMessage, 400));
+                }
+                responseBody = JsonSerializer.Serialize(errors);
+                context.Response.StatusCode = code;
+                return context.Response.WriteAsync(responseBody);
+            }
             if (exception is IAuthException authException)
             {
                 code = authException.ErrorCode;
-                responseBody = JsonSerializer.Serialize(authException);
-
+                responseBody = JsonSerializer.Serialize(new List<IAuthException>() { authException});
             }
 
             if (responseBody == string.Empty)
