@@ -12,6 +12,8 @@
 
         public DateTime CreationTime { get; set; }
 
+        public bool IsEmailConfirmed { get; set; } = false;
+
         public User(string email, string password, string salt)
         {
             Email = email;

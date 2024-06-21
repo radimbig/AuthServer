@@ -1,6 +1,4 @@
 ﻿using MediatR;
-using BCrypt.Net;
-using Org.BouncyCastle.Crypto.Generators;
 using Auth.ModelsCore;
 using Auth.ModelsCore.Exceptions;
 using Microsoft.EntityFrameworkCore;
@@ -23,12 +21,11 @@ namespace Auth.ModelsManipulations.AddUser
             }
 
             var salt = BCrypt.Net.BCrypt.GenerateSalt();
-            var hashOfPassword = BCrypt.Net.BCrypt.HashPassword(request.Password);
-            User tempUser = new(request.Email, request.Password,salt);
+            var hashOfPassword = BCrypt.Net.BCrypt.HashPassword(request.Password,salt);
+            User tempUser = new(request.Email, hashOfPassword,salt);
             CTX.Users.Add(tempUser);
             CTX.SaveChanges();
             return true;
-
         }
 
 

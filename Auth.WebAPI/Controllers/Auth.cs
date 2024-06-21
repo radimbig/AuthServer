@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
+﻿using Auth.WebAPI.RequestModels;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using Auth.ModelsManipulations.AddUser;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Auth.WebAPI.Controllers
@@ -8,6 +10,12 @@ namespace Auth.WebAPI.Controllers
     [ApiController]
     public class Auth : ControllerBase
     {
+        IMediator mediator;
+
+        public Auth(IMediator m)
+        {
+            mediator = m;
+        }
         // GET: api/<Auth>
         [HttpGet]
         public IEnumerable<string> Get()
@@ -24,8 +32,10 @@ namespace Auth.WebAPI.Controllers
 
         // POST api/<Auth>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<bool> Post([FromBody] AddUserReq req)
         {
+            bool isUserCreated = await mediator.Send(new AddUserCommand(req.Email, req.Password));
+            return isUserCreated;
         }
 
         // PUT api/<Auth>/5

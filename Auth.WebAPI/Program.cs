@@ -1,7 +1,8 @@
 using Auth.ModelsCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using MediatR;
+using System.Reflection;
+using Auth.WebAPI.Common.Behavior.Middlewares;
 
 namespace Auth.WebAPI
 {
@@ -18,7 +19,7 @@ namespace Auth.WebAPI
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-
+            
 
             // Setting up data contex
             var connectionString = builder.Configuration.GetConnectionString("AuthApp");
@@ -33,15 +34,21 @@ namespace Auth.WebAPI
             });
 
 
+            builder.Services.AddMediatR(cfg => {
+                cfg.RegisterServicesFromAssembly(Assembly.Load("Auth.ModelsManipulations"));
+                
+            });
 
             var app = builder.Build();
-
+            
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.UseMiddleware<CustomExceptionHandlerMiddleware>();
 
             app.MapControllers();
 
